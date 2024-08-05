@@ -13,26 +13,29 @@ import com.litiandong.android.sunnyweather.logic.Place
 class PlaceAdapter(private val fragment: Fragment, private val placeList: List<Place>) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
-    private lateinit var binding: PlaceItemBinding
+    inner class ViewHolder(binding: PlaceItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val placeName: TextView
+        val placeAddress: TextView
+        init {
+            placeName = binding.placeName
+            placeAddress = binding.placeAddress
+        }
 
-    init {
-    }
-
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val placeName: TextView = view.findViewById(R.id.placeName)
+        fun bind(place: Place) {
+            placeName.text = place.name
+            placeAddress.text = place.address
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("Not yet implemented")
+        val binding = PlaceItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = placeList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val place = placeList[position]
+        holder.bind(place)
     }
-
-
 }
