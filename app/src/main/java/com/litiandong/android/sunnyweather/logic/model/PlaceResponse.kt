@@ -1,4 +1,4 @@
-package com.litiandong.android.sunnyweather.logic
+package com.litiandong.android.sunnyweather.logic.model
 
 import com.google.gson.annotations.SerializedName
 
